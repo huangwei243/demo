@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dimine.test.dao.sysRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.dimine.test.model.sysRole" >
+    <result column="ROLEID" property="roleid" jdbcType="VARCHAR" />
+    <result column="ROLENAME" property="rolename" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="ACGINAME" property="acginame" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dimine.test.model.sysRole" extends="BaseResultMap" >
+    <result column="MEMO" property="memo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    MEMO
+  </sql>
+  <insert id="insert" parameterType="com.dimine.test.model.sysRole" >
+    insert into sys_role (ROLEID, ROLENAME, DEPTID, 
+      ACGINAME, MEMO)
+    values (#{roleid,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}, 
+      #{acginame,jdbcType=VARCHAR}, #{memo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dimine.test.model.sysRole" >
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        ROLEID,
+      </if>
+      <if test="rolename != null" >
+        ROLENAME,
+      </if>
+      <if test="deptid != null" >
+        DEPTID,
+      </if>
+      <if test="acginame != null" >
+        ACGINAME,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="acginame != null" >
+        #{acginame,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="findById" resultMap="BaseResultMap" >
+    SELECT ROLEID, ROLENAME, DEPTID, ACGINAME FROM sys_role WHERE 
+  </select>
+  
+  <select id="findList" resultMap="BaseResultMap" parameterType="com.dimine.test.model.sysRole" >
+    SELECT ROLEID, ROLENAME, DEPTID, ACGINAME FROM sys_role WHERE 1 = 1 
+    <if test=" roleid != null and roleid != '' " >
+       AND ROLEID = #{roleid}
+    </if>
+    <if test=" rolename != null and rolename != '' " >
+       AND ROLENAME = #{rolename}
+    </if>
+    <if test=" deptid != null and deptid != '' " >
+       AND DEPTID = #{deptid}
+    </if>
+    <if test=" acginame != null and acginame != '' " >
+       AND ACGINAME = #{acginame}
+    </if>
+  </select>
+</mapper>

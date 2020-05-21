@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dimine.test.dao.sysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.dimine.test.model.sysUser" >
+    <id column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="DELFLAG" property="delflag" jdbcType="CHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATEMAN" property="createman" jdbcType="VARCHAR" />
+    <result column="MODIFYDATE" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="MODIFYMAN" property="modifyman" jdbcType="VARCHAR" />
+    <result column="LOGINNAME" property="loginname" jdbcType="VARCHAR" />
+    <result column="LOGINPWD" property="loginpwd" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="usertype" property="usertype" jdbcType="VARCHAR" />
+    <result column="headurl" property="headurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USERID, USERNAME, DELFLAG, CREATEDATE, CREATEMAN, MODIFYDATE, MODIFYMAN, LOGINNAME, 
+    LOGINPWD, memo, usertype, headurl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where USERID = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_user
+    where USERID = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.dimine.test.model.sysUser" >
+    insert into sys_user (USERID, USERNAME, DELFLAG, 
+      CREATEDATE, CREATEMAN, MODIFYDATE, 
+      MODIFYMAN, LOGINNAME, LOGINPWD, 
+      memo, usertype, headurl
+      )
+    values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{delflag,jdbcType=CHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createman,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, 
+      #{modifyman,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR}, #{loginpwd,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{usertype,jdbcType=VARCHAR}, #{headurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dimine.test.model.sysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="username != null" >
+        USERNAME,
+      </if>
+      <if test="delflag != null" >
+        DELFLAG,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createman != null" >
+        CREATEMAN,
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE,
+      </if>
+      <if test="modifyman != null" >
+        MODIFYMAN,
+      </if>
+      <if test="loginname != null" >
+        LOGINNAME,
+      </if>
+      <if test="loginpwd != null" >
+        LOGINPWD,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="usertype != null" >
+        usertype,
+      </if>
+      <if test="headurl != null" >
+        headurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null" >
+        #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createman != null" >
+        #{createman,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyman != null" >
+        #{modifyman,jdbcType=VARCHAR},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpwd != null" >
+        #{loginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="headurl != null" >
+        #{headurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dimine.test.model.sysUser" >
+    update sys_user
+    <set >
+      <if test="username != null" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null" >
+        DELFLAG = #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createman != null" >
+        CREATEMAN = #{createman,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyman != null" >
+        MODIFYMAN = #{modifyman,jdbcType=VARCHAR},
+      </if>
+      <if test="loginname != null" >
+        LOGINNAME = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpwd != null" >
+        LOGINPWD = #{loginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        usertype = #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="headurl != null" >
+        headurl = #{headurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USERID = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dimine.test.model.sysUser" >
+    update sys_user
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      DELFLAG = #{delflag,jdbcType=CHAR},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATEMAN = #{createman,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYMAN = #{modifyman,jdbcType=VARCHAR},
+      LOGINNAME = #{loginname,jdbcType=VARCHAR},
+      LOGINPWD = #{loginpwd,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      usertype = #{usertype,jdbcType=VARCHAR},
+      headurl = #{headurl,jdbcType=VARCHAR}
+    where USERID = #{userid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findById" resultMap="BaseResultMap" >
+    SELECT USERID, USERNAME, DELFLAG, CREATEDATE, CREATEMAN, MODIFYDATE, MODIFYMAN, LOGINNAME, LOGINPWD, memo, usertype, headurl FROM sys_user WHERE USERID = #{userid}
+  </select>
+  
+  <select id="findList" resultMap="BaseResultMap" parameterType="com.dimine.test.model.sysUser" >
+    SELECT USERID, USERNAME, DELFLAG, CREATEDATE, CREATEMAN, MODIFYDATE, MODIFYMAN, LOGINNAME, LOGINPWD, memo, usertype, headurl FROM sys_user WHERE 1 = 1 
+    <if test=" username != null and username != '' " >
+       AND USERNAME = #{username}
+    </if>
+    <if test=" delflag != null and delflag != '' " >
+       AND DELFLAG = #{delflag}
+    </if>
+    <if test=" createdate != null " >
+       AND CREATEDATE = #{createdate}
+    </if>
+    <if test=" createman != null and createman != '' " >
+       AND CREATEMAN = #{createman}
+    </if>
+    <if test=" modifydate != null " >
+       AND MODIFYDATE = #{modifydate}
+    </if>
+    <if test=" modifyman != null and modifyman != '' " >
+       AND MODIFYMAN = #{modifyman}
+    </if>
+    <if test=" loginname != null and loginname != '' " >
+       AND LOGINNAME = #{loginname}
+    </if>
+    <if test=" loginpwd != null and loginpwd != '' " >
+       AND LOGINPWD = #{loginpwd}
+    </if>
+    <if test=" memo != null and memo != '' " >
+       AND memo = #{memo}
+    </if>
+    <if test=" usertype != null and usertype != '' " >
+       AND usertype = #{usertype}
+    </if>
+    <if test=" headurl != null and headurl != '' " >
+       AND headurl = #{headurl}
+    </if>
+  </select>
+</mapper>
